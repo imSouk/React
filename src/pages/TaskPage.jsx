@@ -1,16 +1,29 @@
-import { useSearchParams } from "react-router-dom"
+import { ChevronLeftIcon } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 
-function TaskPage(){
-    const [searchParans] = useSearchParams();
-    const title = searchParans.get("title")
-    const description = searchParans.get ("description")
-    return (
+function TaskPage() {
+    const navigate = useNavigate();
+  const [searchParans] = useSearchParams();
+  const title = searchParans.get("title");
+  const description = searchParans.get("description");
+  return (
     <div className="w-screen h-screen bg-slate-500">
-        <h1>{title}</h1>
-        <p>{description}</p>
+      <div className="w-[500] space-y-4">
+        <div className="flex justify-center relative mb-6">
+            <button onClick={()=> navigate(-1)} className="text-slate-100 absolute left-0 top-0 bottom-0">
+                <ChevronLeftIcon />
+            </button>
+            <h1 className="text-3xl text-slate-100 font-bold text-center">
+              Detalhes da Tarefa
+            </h1>
+        </div>
+      </div>
+      <div className="bg-slate-200 p-4 rounded-md">
+        <h2 className=" text-slate-600 text-xl font-bold">{title}</h2>
+        <p className="text-slate-600">{description}</p>
+      </div>
     </div>
-        
-    );
-        
+  );
 }
-export default TaskPage
+export default TaskPage;
